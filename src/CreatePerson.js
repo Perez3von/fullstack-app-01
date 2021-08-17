@@ -4,6 +4,7 @@ class CreatePerson extends Component {
     render() { 
         return ( 
         <>
+        <h2>Welcome to Create Person</h2>
         </> );
     }
 }

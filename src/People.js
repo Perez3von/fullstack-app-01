@@ -4,7 +4,7 @@ class People extends Component {
     render() { 
         return ( 
             <>
-            
+            <h2>Welcome to All people page</h2>
             </>
          );
     }

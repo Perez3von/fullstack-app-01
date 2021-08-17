@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 
-class PeopleDetails extends Component {
+class PersonDetails extends Component {
     
     render() { 
         return (
 
             <>
+            <h1>Welcome to Person Details</h1>
             </>
           );
     }
 }
  
-export default PeopleDetails;
+export default PersonDetails;
