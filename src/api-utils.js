@@ -3,9 +3,20 @@ const base_url = 'https://pure-oasis-32518.herokuapp.com';
 
 export const getPeople = async () => {
 
-    let url = `${base_url}/people`;
-    let res = await fetch(url);
-    let data = res.json();
+    let res = await fetch(`${base_url}/people`);
+
+    let data = await res.json();
+
+    return data;
+
+}
+
+export const getPerson = async (id) => {
+
+    let res = await fetch(`${base_url}/people/${id}`);
+console.log(res)
+    let data = await res.json();
+
     return data;
 
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {getPeople} from './api-utils.js'
-
+import { Link } from 'react-router-dom';
 
 
 
@@ -11,8 +11,8 @@ class People extends Component {
     }
     componentDidMount = async ()=> {
 
-        const people = await getPeople();
-        this.setState({people});
+        const data = await getPeople();
+        this.setState({people:data});
 
     }
 
@@ -20,13 +20,14 @@ class People extends Component {
     render() { 
         return ( 
             <>
-            <h2>Welcome to All people page</h2>
-            {this.state.people.map(p=>{
+            
+            {this.state.people.map((p)=>(
 
-                return <p>{p.name}</p>
+               <h2 key={p.id} > <Link to={`/people/${p.id}`}> {p.name} </Link> </h2>
 
-            })}
-            <p></p>
+            ))
+            }
+            
             </>
          );
     }
