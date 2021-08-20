@@ -21,7 +21,7 @@ export const getPerson = async (id) => {
 
 }
 
-export const getColors = async (info) => {
+export const getColors = async () => {
 
     let res = await fetch(`${base_url}/colors`);
 
@@ -50,4 +50,20 @@ return data;
 
 }
 
-// const createPerson; 
+export const createPerson = async (personData) => {
+
+    const resp = await fetch(`${base_url}/people`,
+    {
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json',
+        },
+        body:JSON.stringify(personData),
+    });
+
+
+const data = await resp.json();
+
+return data;
+    
+}

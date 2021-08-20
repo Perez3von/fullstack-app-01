@@ -18,8 +18,7 @@ class PersonDetails extends Component {
         const person = await getPerson(id);
         const color_list  = await getColors();
         this.setState({...person, color_list});
-        console.log(this.state)
-        console.log(person);
+       
     }
 
     getColorId = () => {
@@ -44,7 +43,7 @@ class PersonDetails extends Component {
             loves_music:this.state.loves_music,
             shirt_color:this.getColorId()
         }
-        console.log(personData)
+        
 
 const data = await updatePerson(personData);
 
@@ -93,7 +92,7 @@ else{
                         <select value={this.state.color} 
                         onChange={(e)=>{
                             this.setState({color:e.target.value})
-                            console.log(typeof this.state.color)
+                            
                         }
                         }>
                             {this.state.color_list.map((colour) => {  
