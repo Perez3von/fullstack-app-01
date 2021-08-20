@@ -1,71 +1,62 @@
 import React, { Component } from 'react';
-import { createPerson, getColors } from './api-utils.js';
+import { createPerson, getColors } from './api-utils';
 class CreatePerson extends Component {
-
-
     state={
-        id:0,
+
         name:'',
         cool_factor:0,
         loves_music:false,
-        color:'',
-        color_list:[],
-        error:false,
-        message:''
-    }
-    componentDidMount = async () =>{
-    
-        const color_list  = await getColors();
-        this.setState({color_list});
-       
+        shirt_color:1,
+        color_list:[]
     }
 
+componentDidMount = async () => {
 
-    getColorId = () => {
+    const colors = await getColors();
+    this.setState({color_list:colors})
 
-        const colorObj =  this.state.color_list.find((item) => 
-              item.color === this.state.color
-              
-          );
-          return colorObj.id;
-      }
-  
-
-
+}
 
 handleClick = async (e) => {
 
-        e.preventDefault();
-        console.log(this.state)
+    e.preventDefault();
 
-        const personData = {
-            id:this.state.id,
-            name:this.state.name,
-            cool_factor:this.state.cool_factor,
-            loves_music:this.state.loves_music,
-            shirt_color:this.getColorId()
-        }
-        
+    const personData = {
+        id:this.state.id,
+        name:this.state.name,
+        cool_factor:this.state.cool_factor,
+        loves_music:this.state.loves_music,
+        shirt_color:this.state.shirt_color
+    }
 
-const data = await createPerson(personData);
 
-if(data.error){
-alert('an error occured')
+    const data = await createPerson(personData);
 
-}
-else{
-    alert('success')
-}
-}
+    if(data.error){
+    alert('an error occured')
     
+    }
+    else{
+        alert('success')
+    }
+    
+
+}
+
+
+
+
+
+
+
     render() { 
         return ( 
         <>
         <h2>Welcome to Create Person</h2>
-        <form id='create-person'>
+        <form id='update-person'>
                     <div>
                         <label>NAME</label>
-                        <input type='text' value={this.state.name}
+                        <input type='text' 
                          onChange={(e)=>{
                             this.setState({name:e.target.value})
 
@@ -77,7 +68,7 @@ else{
                     </div>
                     <div>
                         <label>Cool Factor</label>
-                        <input type='number' value={this.state.cool_factor}
+                        <input type='number' 
                          onChange={(e)=>{
                             this.setState({cool_factor:e.target.value})
 
@@ -89,15 +80,15 @@ else{
                     </div>
                     <div>
                         <label>Favorite Color</label>
-                        <select value={this.state.color} 
+                        <select 
                         onChange={(e)=>{
-                            this.setState({color:e.target.value})
+                            this.setState({shirt_color:e.target.value})
                             
                         }
                         }>
                             {this.state.color_list.map((colour) => {  
 
-                                return (<option value={colour.name} key={colour.id}>{colour.color}</option>)
+                                return (<option value={colour.id} key={colour.id}>{colour.color}</option>)
 
                             } )}
 
@@ -107,7 +98,7 @@ else{
                     </div>
                     <div>
                         <label>Loves Music</label>
-                        <input type='text' value={this.state.loves_music}
+                        <input type='text'
                          onChange={(e)=>{
                             this.setState({loves_music:e.target.value})
 
@@ -122,6 +113,9 @@ else{
                <button type='submit'onClick={this.handleClick}> Submit changes </button>
                
                </form>
+
+
+
 
 
         </> );
