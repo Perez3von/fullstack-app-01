@@ -14,9 +14,40 @@ export const getPeople = async () => {
 export const getPerson = async (id) => {
 
     let res = await fetch(`${base_url}/people/${id}`);
-console.log(res)
-    let data = await res.json();
 
+    let data = await res.json();
+    
     return data;
 
 }
+
+export const getColors = async (info) => {
+
+    let res = await fetch(`${base_url}/colors`);
+
+    let data = await res.json();
+    
+    return data;
+
+}
+
+export const updatePerson = async (personData) => {
+
+    const resp = await fetch(`${base_url}/people/${personData.id}`,
+        {
+            method: 'PUT',
+            headers:{
+                'Content-Type':'application/json',
+            },
+            body:JSON.stringify(personData),
+        });
+
+
+const data = await resp.json();
+
+return data;
+
+
+}
+
+// const createPerson; 

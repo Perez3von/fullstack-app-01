@@ -16,9 +16,7 @@ class Header extends Component {
                     <NavLink exact to='/people'>
                         All People
                     </NavLink>
-                    <NavLink exact to='/people:id'>
-                        Person Info
-                    </NavLink>
+                    
                     <NavLink exact to='/create'>
                         Add Person
                     </NavLink>
